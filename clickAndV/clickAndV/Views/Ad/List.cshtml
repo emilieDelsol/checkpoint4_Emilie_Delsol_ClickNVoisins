@@ -1,0 +1,30 @@
+﻿@using clickAndV.Models
+@model IQueryable<Ad>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "List";
+}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Titre</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (Ad ad in Model)
+    {
+      <tr>
+        <td>@ad.Title</td>
+        <td><a href="/Ad/Edit/@ad.AdId">Modifier</a></td>
+        <td><a href="/Ad/Delete/@ad.AdId">Supprimer</a></td>
+      </tr>
+    }
+  </tbody>
+</table>
+<a asp-area="" asp-controller="Ad" asp-action="GetEdit">Ajouter</a>

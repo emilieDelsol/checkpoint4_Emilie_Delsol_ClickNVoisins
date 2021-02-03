@@ -1,0 +1,39 @@
+﻿@using clickAndV.Models
+@model IQueryable<Ad> 
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="container">
+  <div class="row">
+    @foreach (Ad ad in Model)
+    {
+      <div class="card col-3 m-3">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">@ad.Title</h5>
+          <p class="card-text">@ad.Text</p>
+        </div>
+        <div class="card-body">
+          <a href="#" class="card-link">Contacter</a>
+          <a href="#" class="card-link">Signaler</a>
+        </div>
+          <div>
+              @foreach(Comment comment in ad.Comments)
+              {
+                  <p>@comment.User.UserName</p>
+                  <p>@comment.User.FirstName</p>
+                  <p> @comment.Notice</p>
+              }
+              <p></p>
+          </div>
+      </div>
+    }
+  </div>
+</div>
