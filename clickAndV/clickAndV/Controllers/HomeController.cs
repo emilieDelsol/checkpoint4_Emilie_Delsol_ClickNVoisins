@@ -1,4 +1,5 @@
-﻿using CorrectionCheckpoint3.Models;
+﻿using clickAndV.Models;
+using clickAndV.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CorrectionCheckpoint3.Controllers
+namespace clickAndV.Controllers
 {
     public class HomeController : Controller
     {

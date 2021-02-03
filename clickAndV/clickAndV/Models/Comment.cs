@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CorrectionCheckpoint3.Models
+namespace clickAndV.Models
 {
 	public class Comment
 	{

@@ -1,5 +1,5 @@
-﻿using CorrectionCheckpoint3.Data;
-using CorrectionCheckpoint3.Models;
+﻿using clickAndV.Data;
+using clickAndV.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-namespace CorrectionCheckpoint3.Controllers
+namespace clickAndV.Controllers
 {
     [Authorize]
     public class AdController : Controller

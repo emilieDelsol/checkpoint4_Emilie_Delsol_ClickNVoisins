@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CorrectionCheckpoint3.Models
+namespace clickAndV.Models
 {
     public class User : IdentityUser
     {

@@ -1,4 +1,4 @@
-﻿using CorrectionCheckpoint3.Models;
+﻿using clickAndV.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CorrectionCheckpoint3.Data
+namespace clickAndV.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {

@@ -1,4 +1,4 @@
-﻿@using CorrectionCheckpoint3.Models
+﻿@using clickAndV.Models
 @model IQueryable<Ad> 
 
 @{
@@ -28,6 +28,7 @@
               @foreach(Comment comment in ad.Comments)
               {
                   <p>@comment.User.UserName</p>
+                  <p>@comment.User.FirstName</p>
                   <p> @comment.Notice</p>
               }
               <p></p>

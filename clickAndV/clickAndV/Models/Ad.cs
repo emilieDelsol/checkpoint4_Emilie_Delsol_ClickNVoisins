@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CorrectionCheckpoint3.Models
+namespace clickAndV.Models
 {
     public class Ad
     {
