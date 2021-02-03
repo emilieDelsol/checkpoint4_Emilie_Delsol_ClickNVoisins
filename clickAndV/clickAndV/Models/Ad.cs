@@ -14,11 +14,11 @@ namespace CorrectionCheckpoint3.Models
         public DateTime BeginDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Banner { get; set; }
-        public ICollection<Image> Images { get; set; }
-        public ICollection<Comment> Comments { get; set; }
-        public User User { get; set; }
+        public  virtual ICollection<Image> Images { get; set; }
+        public  virtual ICollection<Comment> Comments { get; set; }
+        public virtual  User User { get; set; }
+        public  virtual Category Category { get; set; }
         [NotMapped]
         public IFormFile Picture { get; set; }
-        public Category category { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace CorrectionCheckpoint3.Models
 		public int DepartementId { get; set; }
 		public String DepartementName { get; set; }
 		public DateTime CreationDate { get; set; }
-		public ICollection<Village> Villages { get; set; }
+		public  virtual  ICollection<Village> Villages { get; set; }
 
 	}
 }

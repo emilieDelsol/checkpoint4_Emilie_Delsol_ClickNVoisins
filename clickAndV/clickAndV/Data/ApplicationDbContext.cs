@@ -17,6 +17,9 @@ namespace CorrectionCheckpoint3.Data
         }
 
         public DbSet<Ad> Ads { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
 
         public IQueryable<Ad> FindAdsByUser(User user)
         {

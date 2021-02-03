@@ -13,6 +13,6 @@ namespace CorrectionCheckpoint3.Models
 		public Int32 PostalCode { get; set; }
 		public String CountryCode { get; set; }
 		public DateTime CreationDate { get; set; }
-		public ICollection<Ad> Ads { get; set; } 
+		public virtual ICollection<Ad> Ads { get; set; } 
     }
 }

@@ -10,7 +10,6 @@ namespace CorrectionCheckpoint3.Models
 		public int CategoryId { get; set; }
 		public String CategoryName { get; set; }
 		public DateTime CreationDate { get; set; }
-		public ICollection<Ad> Ads { get; set; }
-		public Village Village { get; set; }
+		public virtual ICollection<Ad> Ads { get; set; }
 	}
 }

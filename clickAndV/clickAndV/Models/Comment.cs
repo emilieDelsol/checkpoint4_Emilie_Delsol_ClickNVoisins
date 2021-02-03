@@ -8,5 +8,6 @@ namespace CorrectionCheckpoint3.Models
 		public string Notice { get; set; }
 		public int Grade { get; set; }
 		public DateTime CreationDate { get; set; }
+		public virtual User User { get; set; }
 	}
 }
