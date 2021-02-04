@@ -1,8 +1,62 @@
-﻿
+﻿@model IQueryable<Ad>
+@inject clickAndV.Data.ApplicationDbContext context
+
 @{
     ViewData["Title"] = "Categories";
-
+    Category category = Model.First().Category;
 }
 
+<div>
+    <div class=" text-center">
+        <img src="@category.Banner" alt="banner" style="height:337px" class="m-auto" />
+    </div>
+
+    <section>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Chercher</button>
+                </form>
+                <div>
+                    <label for="elementSelect" class="m-auto">Trier par:</label>
+                    <select name="tables" id="elementSelect">
+                        <option value="">--Choisissez une option--</option>
+                        <option value="dateSort">Date</option>
+                        <option value="UserSort">Utilisateur</option>
+                        <option value="IsEnd">Terminés</option>
+                        <option value="willBegin"> A venir</option>
+                    </select>
+                    <button type="button" id="button" onclick="searchByElement()">Trier</button>
+                </div>
+                <a class="btn btn-dark" style="border-radius:50%" asp-controller="Ads" asp-action="Create">
+                   +
+                </a>
+            </div>
+        </nav>
+    </section>
+
+</div>
 <h1>Categories</h1>
 
+<p>
+
+    @Model.Count()
+</p>
+<div class="d-flex flex-wrap container-fluid justify-content-center justify-content-lg-around" >
+    @foreach(Ad ad in Model)
+    {
+    <div class="card my-3 col-12 col-lg-auto" style="width: 25rem;">
+        <div style="height:170px; background-image:url(@ad.Banner); background-size:contain; background-repeat:no-repeat; background-position:center" >
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@ad.Title</h5>
+            <p class="card-text">@ad.Text</p>
+            <p class="card-text">@if (ad.EndDate < DateTime.Now)
+                {<p>Evenement terminé </p>}
+            else {<p>Date de l'évènement: @ad.BeginDate </p> }
+            <a href="#" class="btn btn-primary">Accéder à l'@ad.Category.CategoryName</a>
+        </div>
+    </div>
+    }
+</div>
