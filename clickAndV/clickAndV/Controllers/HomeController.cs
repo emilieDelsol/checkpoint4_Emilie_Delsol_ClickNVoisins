@@ -26,5 +26,9 @@ namespace clickAndV.Controllers
         {
             return View(_context.Ads);
         }
+        public IActionResult Categories()
+        {
+            return View(_context.Ads);
+        }
     }
 }
