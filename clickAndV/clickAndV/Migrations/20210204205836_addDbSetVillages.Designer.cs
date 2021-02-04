@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using clickAndV.Data;
 
 namespace clickAndV.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210204205836_addDbSetVillages")]
+    partial class addDbSetVillages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -209,7 +211,7 @@ namespace clickAndV.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("VillageId")
+                    b.Property<int?>("VillageId")
                         .HasColumnType("int");
 
                     b.HasKey("CategoryId");
@@ -384,7 +386,7 @@ namespace clickAndV.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DepartementId")
+                    b.Property<int?>("DepartementId")
                         .HasColumnType("int");
 
                     b.Property<string>("VillageDescription")
@@ -472,9 +474,7 @@ namespace clickAndV.Migrations
                 {
                     b.HasOne("clickAndV.Models.Village", "Village")
                         .WithMany("Categories")
-                        .HasForeignKey("VillageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VillageId");
 
                     b.Navigation("Village");
                 });
@@ -503,9 +503,7 @@ namespace clickAndV.Migrations
                 {
                     b.HasOne("clickAndV.Models.Departement", "Departement")
                         .WithMany("Villages")
-                        .HasForeignKey("DepartementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DepartementId");
 
                     b.Navigation("Departement");
                 });

@@ -3,14 +3,24 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    Layout = "_LayoutHome";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bonjour et bienvenu sur Click And Voisin! </h1>
+    <p>
+    <br/>Ce site est un prototype de fin d'étude, il  a pour but d'aider à créer du lien social dans les villages...
+    <br/>Le site final sera a destination des mairies qui pouront ajouter/créer des comptes utilisateurs pour des associations ou pour les habitants de leur village.
+    <br/>Les associations pourront par exemple  avertir des évènements à venir et communiquer sur les évènements passés sur une page dédiée. 
+    <br/> Les habitants pourront poster des demandes d'aide, de prêt de matériel ou tout autre sujet..
+    <br />Les visiteurs du site pourront entrer en contact avec l'auteur du post via un lien sur l'article.     </p>
+</div>
+<div class="container-fluid text-center" >
+    <a class="btn btn-dark text-light m-auto" style="position:relative" asp-area="" asp-controller="Home" asp-action="AccueilVillage" >Entrer</a>
+    <img src="https://p.monumentum.fr/galerie/maxi/00296/296946-english-fortified-church-inieres-commune-sainte-radegonde-aveyron-france.jpg" style="position:relative"/>
 </div>
 
-<div class="container">
+<div class="container-fluid justify-content-center">
   <div class="row">
     @foreach (Ad ad in Model)
     {

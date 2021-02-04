@@ -12,5 +12,7 @@ namespace clickAndV.Models
 		public String Banner { get; set; }
 		public DateTime CreationDate { get; set; }
 		public virtual ICollection<Ad> Ads { get; set; }
+		public virtual Int32 VillageId { get; set; }
+		public virtual Village Village { get; set; }
 	}
 }

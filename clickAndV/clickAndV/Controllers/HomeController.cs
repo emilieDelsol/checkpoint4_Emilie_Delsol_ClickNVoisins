@@ -26,6 +26,14 @@ namespace clickAndV.Controllers
         {
             return View(_context.Ads);
         }
+        public IActionResult Dashboard()
+        {
+            return View(_context.Departement);
+        }
+        public IActionResult AccueilVillage()
+        {
+            return View(_context.Ads);
+        }
         public IActionResult Categories(int IdCategory)
         {
             IQueryable<Ad> ads = _context.Ads.Where(a => a.CategoryId == IdCategory);

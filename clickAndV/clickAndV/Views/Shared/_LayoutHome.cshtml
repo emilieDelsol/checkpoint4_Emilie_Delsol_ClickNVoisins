@@ -15,43 +15,14 @@
 <body style="height:100vh">
     <header>
         <div class="container-fluid d-flex justify-content-between text-light header">
-            <p><img src="#" alt="" /> Nom du village</p><h1>Click And Voisins</h1><p>&nbsp;</p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLcrbQUVT7BYuciHd_DLhlOEw_bzzPd2t3xg&usqp=CAU" alt="" style="height:50px" /><h1>Click And Voisins</h1><p>&nbsp;</p>
         </div>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Click And Voisins</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AccueilVillage">Home</a>
-                        </li>
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Dashboard">Dashboard</a>
-                            </li>
-                        }
-                        @foreach (Category category in context.Categories)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home"  asp-action="Categories" asp-route-IdCategory="@category.CategoryId">@category.CategoryName</a>
-                            </li>
-                        }
-                    </ul>
-                </div>
-            </div>
-        </nav>
     </header>
     <div class="d-flex">
         <main role="main" class="pb-3 container-fluid">
             @RenderBody()
         </main>
-       
+
     </div>
 
 

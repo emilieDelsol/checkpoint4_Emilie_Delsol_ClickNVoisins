@@ -1,0 +1,146 @@
+﻿
+@model IEnumerable<Departement>
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    IEnumerable<Departement> departements = Model;
+
+}
+<div>
+    <h2>Départements:</h2>
+    <p>
+        <a asp-controller="Departements" asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DepartementName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreationDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DepartementName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+                    </td>
+                    <td>
+                        <a asp-controller="Departements" asp-action="Edit" asp-route-id="@item.DepartementId">Edit</a> |
+                        <a asp-controller="Departements" asp-action="Delete" asp-route-id="@item.DepartementId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h2>Villages:</h2>
+    <p>
+        <a asp-controller="Villages" asp-action="Create">Create New</a>
+    </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Nom du village
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Date de création:
+                    </th>
+                    <th>
+                        Departement:
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+    @foreach (Departement departement in Model)
+    {
+
+            <tbody>
+                @foreach (var item in departement.Villages)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(departementItem => item.VillageName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VillageDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Departement.DepartementName)
+                        </td>
+                        <td>
+                            <a asp-controller="Villages" asp-action="Edit" asp-route-id="@item.VillageId">Edit</a> |
+                            <a asp-controller="Villages" asp-action="Delete" asp-route-id="@item.VillageId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+}
+        </table>
+    </div>
+<div>
+    <h2>Categories:</h2>
+    <p>
+        <a asp-controller="Villages" asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    CategoryName
+                </th>
+                <th>
+                    Banner
+                </th>
+                <th>
+                  CreationDate
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (Departement dept in Model)
+        {
+            foreach (Village village in dept.Villages)
+            {
+    <tbody>
+        @foreach (var item in village.Categories)
+        {
+            <tr>
+                <td>
+                    @item.CategoryName
+                </td>
+                <td>
+                    <img src="@item.Banner" alt="" height="50px"/>
+                </td>
+                <td>
+                    @item.CreationDate
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+            }
+        }
+        </table>
+</div>

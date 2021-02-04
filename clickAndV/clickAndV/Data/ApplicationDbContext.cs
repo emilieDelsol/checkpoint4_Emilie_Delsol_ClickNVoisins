@@ -19,9 +19,11 @@ namespace clickAndV.Data
         public DbSet<Ad> Ads { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Village> Villages { get; set; }
+		public DbSet<Departement> Departement { get; set; }
 
 
-        public IQueryable<Ad> FindAdsByUser(User user)
+		public IQueryable<Ad> FindAdsByUser(User user)
         {
             return Ads.Where(a => a.User.Id == user.Id);
         }
