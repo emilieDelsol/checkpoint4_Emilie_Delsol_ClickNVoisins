@@ -9,6 +9,7 @@ namespace clickAndV.Models
 	{
 		public int CategoryId { get; set; }
 		public String CategoryName { get; set; }
+		public String Banner { get; set; }
 		public DateTime CreationDate { get; set; }
 		public virtual ICollection<Ad> Ads { get; set; }
 	}

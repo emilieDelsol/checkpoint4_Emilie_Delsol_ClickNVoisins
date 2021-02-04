@@ -47,6 +47,10 @@ namespace clickAndV.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+
+            [DataType(DataType.DateTime)]
+            public DateTime CreationDate { get; set; }
+
             [Required]
             [DataType(DataType.Text)]
             public string LastName { get; set; }
@@ -84,7 +88,7 @@ namespace clickAndV.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Email, Email = Input.Email, LastName = Input.LastName, FirstName = Input.FirstName };
+                var user = new User { UserName = Input.Email, Email = Input.Email, LastName = Input.LastName, FirstName = Input.FirstName, CreationDate=Input.CreationDate };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

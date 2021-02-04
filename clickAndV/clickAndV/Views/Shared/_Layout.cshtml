@@ -1,55 +1,138 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<User> SignInManager
+@inject clickAndV.Data.ApplicationDbContext context
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>@ViewData["Title"] - CorrectionCheckpoint3</title>
-  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="~/css/site.css" />
-</head>
-<body>
-  <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-      <div class="container">
-        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CorrectionCheckpoint3</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-          <partial name="_LoginPartial" />
-          <ul class="navbar-nav flex-grow-1">
-            <li class="nav-item">
-              <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-            </li>
-            @if (SignInManager.IsSignedIn(User))
-            {
-              <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Ad" asp-action="List">Annonces</a>
-              </li>
-            }
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
-  <div class="container">
-    <main role="main" class="pb-3">
-      @RenderBody()
-    </main>
-  </div>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CorrectionCheckpoint3</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 
-  <footer class="border-top footer text-muted">
-    <div class="container">
-      &copy; 2021 - CorrectionCheckpoint3 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+</head>
+<body style="height:100vh">
+    <header>
+        <div class="container-fluid d-flex justify-content-between text-light header">
+            <p><img src="#" alt="" /> Nom du village</p><h1>Click And Voisins</h1><p>&nbsp;</p>
+        </div>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Click And Voisins</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Ad" asp-action="List">Annonces</a>
+                            </li>
+                        }
+                        @foreach (Category category in context.Categories)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home"  asp-action="Categories" asp-route-IdCategory="@category.CategoryId">@category.CategoryName</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="d-flex">
+        <main role="main" class="pb-3 container-fluid">
+            @RenderBody()
+        </main>
+       
     </div>
-  </footer>
-  <script src="~/lib/jquery/dist/jquery.min.js"></script>
-  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="~/js/site.js" asp-append-version="true"></script>
-  @RenderSection("Scripts", required: false)
+
+
+    <footer class="page-footer font-small pt-4 footer">
+        <div class="container text-center text-lg-left">
+            <!-- Grid row -->
+            <div class="row">
+                <!-- Grid column -->
+                <div class="col-lg-4 mx-auto">
+                    <!-- Content -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4 footerTitle yellowEffect">Click And Voisins </h5>
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-lg-none">
+
+                <!-- Grid column -->
+                <div class="col-lg-2 mx-auto">
+                    <!-- Links -->
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="formContact.html" target="_blank" class="footerLink yellowEffect">Nous contacter</a>
+                        </li>
+                        <li>
+                            <a href="https://fabiend31.github.io/Projet1/cards.html" target="_blank" class="footerLink yellowEffect">Qui sommes nous?</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-lg-none">
+
+                <!-- Grid column -->
+                <div class="col-lg-2 mx-auto">
+                    <!-- Links -->
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="https://www.adopteunmec.com/" target="_blank" class="footerLink yellowEffect">Recrutement</a>
+                        </li>
+                        <li>
+                            <a href="https://www.francetvinfo.fr/cgu/" target="_blank" class="footerLink yellowEffect">CGU et mentions légales</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-lg-2 mx-auto">
+                    <!-- Links -->
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="https://www.youtube.com/watch?v=fRLiCXWnuts&amp;ab_channel=CuisineMarocaineByMariam" target="_blank" class="footerLink yellowEffect">Gestion des cookies</a>
+                        </li>
+                        <li>
+                            <a href="https://www.007.com/" target="_blank" class="footerLink yellowEffect">Politiques de confidentialités</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+        <!-- Footer Links -->
+
+        <hr>
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">
+            © 2020 Copyright:
+            <a href="https://www.wildcodeschool.com" target="_blank" class="footerLink yellowEffect"> Wild Code School</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
