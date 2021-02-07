@@ -15,6 +15,7 @@ namespace clickAndV.Models
         public DateTime EndDate { get; set; }
         public string Banner { get; set; }
         public int CategoryId { get; set; }
+        public String UserId { get; set; }
         public  virtual ICollection<Image> Images { get; set; }
         public  virtual ICollection<Comment> Comments { get; set; }
         public virtual  User User { get; set; }

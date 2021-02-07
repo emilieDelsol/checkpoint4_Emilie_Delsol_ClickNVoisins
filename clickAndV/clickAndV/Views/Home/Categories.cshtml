@@ -33,7 +33,7 @@
                         <button type="button" id="button" onclick="searchByElement()">Trier</button>
                     </div>
 
-                    <a class="btn btn-dark" style="border-radius:50%" asp-controller="Ads" asp-action="Create">
+                    <a class="btn btn-dark" style="border-radius:50%" asp-controller="Ads" asp-action="Create" asp-route-IdVillage="@Model.VillageId">
                         +
                     </a>
                 </div>

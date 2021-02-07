@@ -5,8 +5,10 @@
 
 @{
     ViewData["Title"] = "Home Page";
-    Layout = "_LayoutHome";
+    Layout = "_Layout";
 }
+@await Html.PartialAsync("_HeaderPartial")
+<main role="main">
 
 <div class="text-center">
     <h1 class="display-4">Bonjour et bienvenu sur Click And Voisins! </h1>
@@ -56,3 +58,4 @@
         }
     </div>
 </div>
+</main>

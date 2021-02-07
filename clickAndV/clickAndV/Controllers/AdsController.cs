@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using clickAndV.Data;
 using clickAndV.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace clickAndV.Controllers
 {
@@ -45,13 +46,15 @@ namespace clickAndV.Controllers
             return View(ad);
         }
 
+        [Authorize]
         // GET: Ads/Create
-        public IActionResult Create()
+        public IActionResult Create(int IdVillage)
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
+            ViewData["CategoryId"] = new SelectList(_context.Categories.Where(c=>c.VillageId==IdVillage), "CategoryId", "CategoryName");
             return View();
         }
 
+        [Authorize]
         // POST: Ads/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -66,10 +69,11 @@ namespace clickAndV.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", ad.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", ad.CategoryId);
             return View(ad);
         }
 
+        [Authorize]
         // GET: Ads/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
@@ -83,10 +87,12 @@ namespace clickAndV.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", ad.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", ad.CategoryId);
             return View(ad);
         }
 
+
+        [Authorize]
         // POST: Ads/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -119,10 +125,11 @@ namespace clickAndV.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", ad.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", ad.CategoryId);
             return View(ad);
         }
 
+        [Authorize]
         // GET: Ads/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
@@ -142,6 +149,7 @@ namespace clickAndV.Controllers
             return View(ad);
         }
 
+        [Authorize]
         // POST: Ads/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

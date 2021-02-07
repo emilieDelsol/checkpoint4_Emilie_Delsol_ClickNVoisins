@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace clickAndV.Controllers
 {
@@ -26,10 +27,6 @@ namespace clickAndV.Controllers
         {
             return View(_context.Ads);
         }
-        public IActionResult Dashboard()
-        {
-            return View(_context.Departement);
-        }
         public IActionResult AccueilVillage(int VillageId)
         {
             Village village = _context.Villages.Where(v => v.VillageId == VillageId).First();
@@ -42,5 +39,10 @@ namespace clickAndV.Controllers
             return View(category);
         }
     
+         [Authorize]
+        public IActionResult Dashboard()
+        {
+            return View(_context.Departement);
+        }
     }
 }
