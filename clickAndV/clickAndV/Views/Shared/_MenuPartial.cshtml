@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject clickAndV.Data.ApplicationDbContext context
+@model Int32
+
+@{
+    Village village = context.Villages.Where(v => v.VillageId == Model).First();
+
+}
+<nav class="navbar navbar-expand-lg navbar-toggleable-lg navbar-dark banner text-light border-bottom box-shadow "  style="font-size:1.4em">
+    <div class="container-fluid ">
+       <div >
+            <button class="navbar-toggler text-light mx-3" type="button" data-toggle="collapse" data-target="#navbar-collapse-menu" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon text-light"></span>
+            </button>
+            <a class="nav-link text-light  " asp-area="" asp-controller="Home" asp-action="AccueilVillage" asp-route-VillageId="@village.VillageId">Accueil</a>
+       </div>
+        <div class="navbar-collapse collapse d-lg-inline-flex flex-lg-row  " id="navbar-collapse-menu">
+            <ul class="navbar-nav flex-grow-1  ">
+
+                    @{int i = 1; }
+                @foreach (Category category in village.Categories.OrderBy(c => c.CategoryId))
+                {
+                    if(i < village.Categories.Count() )
+                    {
+                        <li class="nav-item mx-5 ">
+                            <a class="nav-link text-light   " asp-area="" asp-controller="Home" asp-action="Categories" asp-route-IdCategory="@category.CategoryId">@category.CategoryName</a>
+                        </li>
+                    }
+                    else
+                    {
+
+                        <li class="nav-item mx-5 px-lg-5">
+                            <a class="nav-link text-light " asp-area="" asp-controller="Home" asp-action="Categories" asp-route-IdCategory="@category.CategoryId">@category.CategoryName</a>
+                        </li>
+                    }
+
+                   
+                    i++;
+                }
+
+            </ul>
+             
+        </div>
+    </div>
+</nav>

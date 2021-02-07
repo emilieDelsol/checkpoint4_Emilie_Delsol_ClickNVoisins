@@ -51,6 +51,9 @@ namespace clickAndV.Areas.Identity.Pages.Account
             [DataType(DataType.DateTime)]
             public DateTime CreationDate { get; set; }
 
+            [DataType(DataType.DateTime)]
+            public DateTime Birthday { get; set; }
+            
             [Required]
             [DataType(DataType.Text)]
             public string LastName { get; set; }

@@ -1,14 +1,16 @@
-﻿@model IQueryable<Ad>
+﻿@model Category
 @inject clickAndV.Data.ApplicationDbContext context
 
 @{
     ViewData["Title"] = "Categories";
-    Category category = Model.First().Category;
 }
+<header>
+    @await Html.PartialAsync("_HeaderPartial")
+    <div class=" text-center border " id="banner" style="height:125px; background-image:url(@Model.Banner); background-size:contain; background-repeat:repeat-x; background-position:center">
+    </div>
+    @await Html.PartialAsync("_MenuPartial", Model.Village.VillageId)
+</header>
 
-
-<div class=" text-center border" style="height:337px; background-image:url(@category.Banner); background-size:contain; background-repeat:repeat-x; background-position:center">
-</div>
 <section class="d-flex flex-column flex-lg-row justify-content-center">
 
     <div class="border m-0 my-3">
@@ -30,17 +32,17 @@
                         </select>
                         <button type="button" id="button" onclick="searchByElement()">Trier</button>
                     </div>
-                  
-                        <a class="btn btn-dark" style="border-radius:50%" asp-controller="Ads" asp-action="Create">
-                            +
-                        </a>
+
+                    <a class="btn btn-dark" style="border-radius:50%" asp-controller="Ads" asp-action="Create">
+                        +
+                    </a>
                 </div>
             </nav>
         </section>
 
         <section class="d-flex">
             <div class="d-flex flex-wrap container-fluid justify-content-center justify-content-lg-around">
-                @foreach (Ad ad in Model)
+                @foreach (Ad ad in Model.Ads)
                 {
                     <div class="card my-3 mx-1 col-12 col-lg-auto" style="width: 25rem;">
                         <div style="height:170px; background-image:url(@ad.Banner); background-size:contain; background-repeat:no-repeat; background-position:center">

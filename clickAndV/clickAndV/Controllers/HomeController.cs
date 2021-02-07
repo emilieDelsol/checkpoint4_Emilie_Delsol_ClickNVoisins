@@ -30,14 +30,16 @@ namespace clickAndV.Controllers
         {
             return View(_context.Departement);
         }
-        public IActionResult AccueilVillage()
+        public IActionResult AccueilVillage(int VillageId)
         {
-            return View(_context.Ads);
+            Village village = _context.Villages.Where(v => v.VillageId == VillageId).First();
+            return View(village);
         }
         public IActionResult Categories(int IdCategory)
         {
-            IQueryable<Ad> ads = _context.Ads.Where(a => a.CategoryId == IdCategory);
-            return View(ads);
+            Category category = _context.Categories.Where(c => c.CategoryId == IdCategory).First();
+
+            return View(category);
         }
     
     }

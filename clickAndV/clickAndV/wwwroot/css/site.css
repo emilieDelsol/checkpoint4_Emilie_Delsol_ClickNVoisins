@@ -69,7 +69,7 @@ body {
     color: #ffc300;
 }
 
-.footer, .header {
+.footer, .header, .banner {
     white-space: nowrap;
     background-color: #222;
 }

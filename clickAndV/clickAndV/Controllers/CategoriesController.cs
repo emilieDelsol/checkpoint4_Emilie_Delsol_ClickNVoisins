@@ -20,9 +20,9 @@ namespace clickAndV.Controllers
         }
 
         // GET: Categories
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int villageId)
         {
-            return View(await _context.Categories.ToListAsync());
+            return View(await _context.Categories.Where(c=>c.VillageId==villageId).ToListAsync());
         }
 
         // GET: Categories/Details/5

@@ -1,0 +1,54 @@
+﻿@inject clickAndV.Data.ApplicationDbContext context
+@{IQueryable<Village> villages = context.Villages.AsQueryable();}
+<article>
+    <h2>Villages:</h2>
+
+
+    <p>
+        <a asp-controller="Villages" asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    VillageName
+                </th>
+                <th>
+                    VillageDescription
+                </th>
+                <th>
+                    CreationDate
+                </th>
+                <th>
+                    Departement
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in villages)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(villagesItem => item.VillageName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(villagesItem => item.VillageDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(villagesItem => item.CreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(villagesItem => item.Departement.DepartementName)
+                    </td>
+                    <td>
+                        <a asp-controller="Villages" asp-action="Edit" asp-route-id="@item.VillageId">Edit</a> |
+                        <a asp-controller="Villages" asp-action="Details" asp-route-id="@item.VillageId">Details</a> |
+                        <a asp-controller="Villages" asp-action="Delete" asp-route-id="@item.VillageId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</article>

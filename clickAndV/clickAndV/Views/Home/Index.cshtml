@@ -1,5 +1,7 @@
 ﻿@using clickAndV.Models
-@model IQueryable<Ad> 
+@model IQueryable<Ad>
+@inject clickAndV.Data.ApplicationDbContext context
+
 
 @{
     ViewData["Title"] = "Home Page";
@@ -7,44 +9,50 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bonjour et bienvenu sur Click And Voisin! </h1>
+    <h1 class="display-4">Bonjour et bienvenu sur Click And Voisins! </h1>
     <p>
-    <br/>Ce site est un prototype de fin d'étude, il  a pour but d'aider à créer du lien social dans les villages...
-    <br/>Le site final sera a destination des mairies qui pouront ajouter/créer des comptes utilisateurs pour des associations ou pour les habitants de leur village.
-    <br/>Les associations pourront par exemple  avertir des évènements à venir et communiquer sur les évènements passés sur une page dédiée. 
-    <br/> Les habitants pourront poster des demandes d'aide, de prêt de matériel ou tout autre sujet..
-    <br />Les visiteurs du site pourront entrer en contact avec l'auteur du post via un lien sur l'article.     </p>
+        <br />Ce site est un prototype de fin d'étude, il  a pour but d'aider à créer du lien social dans les villages...
+        <br />Le site final sera a destination des mairies qui pouront ajouter/créer des comptes utilisateurs pour des associations ou pour les habitants de leur village.
+        <br />Les associations pourront par exemple  avertir des évènements à venir et communiquer sur les évènements passés sur une page dédiée.
+        <br /> Les habitants pourront poster des demandes d'aide, de prêt de matériel ou tout autre sujet..
+        <br />Les visiteurs du site pourront entrer en contact avec l'auteur du post via un lien sur l'article.
+    </p>
 </div>
-<div class="container-fluid text-center" >
-    <a class="btn btn-dark text-light m-auto" style="position:relative" asp-area="" asp-controller="Home" asp-action="AccueilVillage" >Entrer</a>
-    <img src="https://p.monumentum.fr/galerie/maxi/00296/296946-english-fortified-church-inieres-commune-sainte-radegonde-aveyron-france.jpg" style="position:relative"/>
+<div class="container-fluid text-center">
+    <img src="https://p.monumentum.fr/galerie/maxi/00296/296946-english-fortified-church-inieres-commune-sainte-radegonde-aveyron-france.jpg" style="position:relative" />
 </div>
 
+@foreach (Village village in context.Villages)
+{
+    <a class="btn btn-danger" asp-controller="Home" asp-action="AccueilVillage" asp-route-VillageID="@village.VillageId">@village.VillageName</a>
+
+}
+
 <div class="container-fluid justify-content-center">
-  <div class="row">
-    @foreach (Ad ad in Model)
-    {
-      <div class="card col-3 m-3">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">@ad.Title</h5>
-          <p class="card-text">@ad.Text</p>
-        </div>
-        <div class="card-body">
-          <a href="#" class="card-link">Contacter</a>
-          <a href="#" class="card-link">Signaler</a>
-        </div>
-          <div>
-              @foreach(Comment comment in ad.Comments)
-              {
-                  <p>@comment.User.UserName</p>
-                  <p>@comment.User.FirstName</p>
-                  <p> @comment.Notice</p>
-              }
-              <p></p>
-          </div>
-   @*       <p>@ad.Category.CategoryName</p>*@
-      </div>
-    }
-  </div>
+    <div class="row">
+        @foreach (Ad ad in Model)
+        {
+            <div class="card col-3 m-3">
+                <img class="card-img-top" src="..." alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@ad.Title</h5>
+                    <p class="card-text">@ad.Text</p>
+                </div>
+                <div class="card-body">
+                    <a href="#" class="card-link">Contacter</a>
+                    <a href="#" class="card-link">Signaler</a>
+                </div>
+                <div>
+                    @foreach (Comment comment in ad.Comments)
+                    {
+                        <p>@comment.User.UserName</p>
+                        <p>@comment.User.FirstName</p>
+                        <p> @comment.Notice</p>
+                    }
+                    <p></p>
+                </div>
+                @*       <p>@ad.Category.CategoryName</p>*@
+            </div>
+        }
+    </div>
 </div>

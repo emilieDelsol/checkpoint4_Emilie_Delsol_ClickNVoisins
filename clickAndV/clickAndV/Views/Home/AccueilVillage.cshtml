@@ -1,8 +1,24 @@
-﻿
+﻿@model Village
+
 @{
     ViewData["Title"] = "AccueilVillage";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ICollection<Category> categories = Model.Categories;
 }
+<header>
+    @await Html.PartialAsync("_HeaderPartial")
+    @await Html.PartialAsync("_MenuPartial",Model.VillageId)
+</header>
 
-<h1>AccueilVillage</h1>
 
+<main role="main" class="pb-3 container-fluid">
+
+    <h1>AccueilVillage</h1>
+
+
+
+    <img src="@Model.Banner" alt="" />
+
+
+    </main>

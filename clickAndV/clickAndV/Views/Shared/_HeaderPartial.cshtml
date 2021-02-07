@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject clickAndV.Data.ApplicationDbContext context
+
+<nav class="navbar  navbar-dark banner text-light border-bottom box-shadow ">
+
+    <div class="container-fluid ">
+        <h3 class="p-3"> <a class="text-light " asp-area="" asp-controller="Home" asp-action="Index">Click And voisins</a></h3><p>&nbsp;</p>
+         <partial name="_LoginPartial"/>
+        
+    </div>
+
+
+</nav>
