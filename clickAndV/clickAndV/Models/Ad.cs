@@ -22,5 +22,6 @@ namespace clickAndV.Models
         public  virtual Category Category { get; set; }
         [NotMapped]
         public IFormFile Picture { get; set; }
+       
     }
 }

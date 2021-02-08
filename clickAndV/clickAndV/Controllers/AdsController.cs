@@ -8,16 +8,22 @@ using Microsoft.EntityFrameworkCore;
 using clickAndV.Data;
 using clickAndV.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace clickAndV.Controllers
 {
     public class AdsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public AdsController(ApplicationDbContext context)
+
+        public AdsController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            webHostEnvironment = hostEnvironment;
+
         }
 
         // GET: Ads
@@ -51,7 +57,7 @@ namespace clickAndV.Controllers
         public IActionResult Create(int IdVillage)
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories.Where(c=>c.VillageId==IdVillage), "CategoryId", "CategoryName");
-            return View();
+            return View(this.User);
         }
 
         [Authorize]
@@ -60,11 +66,13 @@ namespace clickAndV.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AdId,Title,Text,CreationDate,BeginDate,EndDate,Banner,CategoryId")] Ad ad)
+        public async Task<IActionResult> Create([Bind("AdId,Title,Text,CreationDate,BeginDate,EndDate,Banner,CategoryId,Picture")] Ad ad)
         {
             if (ModelState.IsValid)
             {
+                string uniqueFileName = UploadedFile(ad);
                 ad.AdId = Guid.NewGuid();
+                ad.Banner = uniqueFileName;
                 _context.Add(ad);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -72,7 +80,23 @@ namespace clickAndV.Controllers
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", ad.CategoryId);
             return View(ad);
         }
+        private string UploadedFile(Ad model)
+        {
+            string uniqueFileName = null;
 
+            if (model.Picture != null)
+            {
+                string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Picture.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    model.Picture.CopyTo(fileStream);
+                    fileStream.Close();
+                }
+            }
+            return uniqueFileName;
+        }
         [Authorize]
         // GET: Ads/Edit/5
         public async Task<IActionResult> Edit(Guid? id)

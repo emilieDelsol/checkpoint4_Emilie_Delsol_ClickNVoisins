@@ -1,0 +1,48 @@
+﻿@model IEnumerable<clickAndV.Models.Ad>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h4 class="text-center text-uppercase">List of employee</h4>
+
+<p>
+    <a asp-action="New" class="btn btn-sm btn-primary rounded-0 text-uppercase"><i class="fas fa-plus-circle"></i> Add New</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th>@Html.DisplayNameFor(model => model.Text)</th>
+            <th>@Html.DisplayNameFor(model => model.CreationDate)</th>
+            <th>@Html.DisplayNameFor(model => model.BeginDate)</th>
+            <th>@Html.DisplayNameFor(model => model.EndDate)</th>
+            <th>@Html.DisplayNameFor(model => model.Banner)</th>
+            <th>@Html.DisplayNameFor(model => model.CategoryId)</th>
+            <th>@Html.DisplayNameFor(model => model.UserId)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ad in Model)
+        {
+            <tr>
+
+                <td>@ad.Title</td>
+                <td>@ad.Text</td>
+                <td>@ad.CreationDate</td>
+                <td>@ad.BeginDate</td>
+                <td>@ad.EndDate</td>
+                <td>
+                    <img src="~/images/@ad.Banner"
+                         class="rounded-circle"
+                         height="40" width="40"
+                         asp-append-version="true" />
+                    @ad.Title
+                </td>
+                <td>@ad.CategoryId</td>
+                <td>@ad.UserId</td>
+            </tr>
+
+        }
+    </tbody>
+</table>   
